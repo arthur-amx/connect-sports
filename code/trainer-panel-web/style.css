@@ -1,0 +1,227 @@
+/* Reset Básico e Configurações Globais */
+:root {
+    --background-color: #f5f5f5; /* Similar a Colors.grey.shade100 */
+    --card-color: #ffffff;
+    --text-color: #212121; /* Similar a Colors.black87 */
+    --primary-color: #2962ff; /* Similar a Colors.blueAccent */
+    --dark-color: #000000;
+    --purple-color: #673ab7; /* Similar a Colors.deepPurple */
+    --text-light: #616161;
+    --app-bar-color: #000000;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Header (AppBar) */
+.app-bar {
+    background-color: var(--app-bar-color);
+    color: white;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.app-bar-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    color: white;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.icon-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Drawer de Navegação */
+.drawer {
+    position: fixed;
+    top: 0;
+    right: -280px; /* Começa fora da tela */
+    width: 250px;
+    height: 100%;
+    background-color: var(--card-color);
+    box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+}
+.drawer.open {
+    right: 0;
+}
+.drawer ul {
+    list-style: none;
+    padding: 20px 0;
+    margin: 0;
+}
+.drawer li a {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+}
+.drawer li a:hover {
+    background-color: var(--background-color);
+}
+.scrim {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+}
+.scrim.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+/* Layout Principal */
+.container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Estilo dos Cards */
+.card {
+    background-color: var(--card-color);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text-color);
+}
+
+.card p {
+    margin: 0;
+    line-height: 1.5;
+    color: var(--text-light);
+}
+
+/* Estilos Específicos dos Cards */
+.share-code-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.trainer-code-text {
+    font-family: 'monospace';
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+.athlete-overview-text {
+    font-size: 1.1rem;
+}
+
+.athlete-count-number {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.workout-management-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+
+/* Estilo dos Botões */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    color: white;
+    flex-grow: 1; /* Faz os botões crescerem igualmente */
+}
+.button:hover {
+    opacity: 0.9;
+}
+
+.button-primary {
+    background-color: var(--primary-color);
+}
+.button-dark {
+    background-color: var(--dark-color);
+}
+.button-purple {
+    background-color: var(--purple-color);
+}
+
+
+.button-text {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 5px;
+}
+.button-text:hover {
+    background-color: rgba(41, 98, 255, 0.1);
+}
+
+.material-icons {
+    font-size: 1.25rem; /* 20px */
+}

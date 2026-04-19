@@ -1,0 +1,1 @@
+Nesta pasta, estão disponibilizadas as evidências do documento ATAM, referenciadas no [Documento de Arquitetura](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2025-1-ti5-0492100-connect-sports/blob/main/docs/architecture_document.md)

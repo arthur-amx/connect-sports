@@ -1,0 +1,98 @@
+services:
+  # Serviço do Backend Node.js
+  connect_sports_backend:
+    build: 
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: connect_sports_backend
+    ports:
+      - "${PORT:-3000}:${PORT:-3000}"
+      - "9229:9229"
+    env_file:
+      - .env
+    volumes:
+      - ./api:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      connect_sports_db:
+          condition: service_healthy
+      rabbitmq:
+        condition: service_started
+    networks:
+      - app-network
+      
+  # Serviço do Frontend Web para o Painel do Treinador
+  trainer_panel_web:
+    build:
+      context: ./trainer-panel-web
+      dockerfile: Dockerfile
+    container_name: trainer_panel_web
+    ports:
+      - "8080:80"
+    networks:
+      - app-network
+    depends_on:
+      - connect_sports_backend
+
+  # Serviço do Banco de Dados PostgreSQL
+  connect_sports_db:
+    image: postgres:15-alpine
+    container_name: connect_sports_db
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./api/init-db:/docker-entrypoint-initdb.d
+    ports:
+      - "5433:5432"
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_DATABASE}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Serviço para tarefas agendadas (Cron)
+  cronjob:
+    build: 
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: connect_sports_cronjob
+    command: node cronJobs/cronjobs.js
+    env_file:
+      - .env
+    depends_on:
+      connect_sports_db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_started
+    networks:
+      - app-network
+
+  # Serviço do RabbitMQ (Message Broker)
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - app-network
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBIT_MQ_USERNAME}
+      RABBITMQ_DEFAULT_PASS: ${RABBIT_MQ_PASSWORD}
+    volumes:
+      - ./api/rabbitmq-init.sh:/docker-entrypoint-init.d/rabbitmq-init.sh
+
+# Define os volumes nomeados
+volumes:
+  pgdata:
+
+# Define a rede customizada
+networks:
+  app-network:
+    driver: bridge
+    
