@@ -4,6 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Connect Sports</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000'/%3E%3Cpath d='M16 4C9.37 4 4 9.37 4 16C4 22.63 9.37 28 16 28' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M16 28C22.63 28 28 22.63 28 16C28 9.37 22.63 4 16 4' stroke='rgba(255,255,255,0.3)' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='16' r='5' stroke='white' stroke-width='2.5'/%3E%3C/svg%3E"/>
 <meta name="description" content="Conecte atletas e personal trainers. Treinos personalizados, evolução real."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -46,8 +47,8 @@ nav.scrolled{background:rgba(0,0,0,.85);backdrop-filter:blur(20px);padding:1rem 
 
 /* HERO */
 .hero{position:relative;height:100vh;display:flex;align-items:flex-end;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=85');background-size:cover;background-position:center 30%;transform:scale(1.1);transition:transform 8s ease}
-.hero-bg.loaded{transform:scale(1)}
+.hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=85');background-size:cover;background-position:center 30%;transform:scale(1.08);transition:transform 2s cubic-bezier(.25,.46,.45,.94)}
+.hero-bg.loaded{transform:scale(1);transition:transform 2s cubic-bezier(.25,.46,.45,.94)}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.95) 0%,rgba(0,0,0,.3) 50%,rgba(0,0,0,.2) 100%)}
 .hero-content{position:relative;z-index:2;padding:0 3rem 5rem;max-width:1200px;width:100%}
 .hero-eyebrow{font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1.5rem}
@@ -304,7 +305,7 @@ footer{background:var(--black);border-top:1px solid #1a1a1a;padding:3rem;display
   <div class="nav-links">
     <a href="#app" class="nav-link-hide">O App</a>
     <a href="#planos" class="nav-link-hide">Planos</a>
-    <a href="https://github.com/arthur-amx/connect-sports" target="_blank" class="nav-link-hide">GitHub</a>
+    <a href="#baixar" class="nav-link-hide">Download</a>
     <a href="#baixar" class="nav-cta">Baixar grátis</a>
   </div>
 </nav>
@@ -314,13 +315,13 @@ footer{background:var(--black);border-top:1px solid #1a1a1a;padding:3rem;display
   <div class="hero-bg" id="heroBg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Aplicativo mobile · Android · 2025</p>
+    <p class="hero-eyebrow">Disponível agora · Android · 2026</p>
     <h1 class="hero-title">Treine<br/><em>com quem</em><br/>entende você</h1>
     <div class="hero-bottom">
-      <p class="hero-desc">Conecte atletas e personal trainers. Fichas personalizadas, acompanhamento em tempo real e evolução que você mede.</p>
+      <p class="hero-desc">O app que coloca você no centro do seu desenvolvimento. Seu personal trainer. Suas metas. Sua evolução — tudo em um só lugar.</p>
       <div class="hero-actions">
-        <a href="#baixar" class="btn-white">⬇ Baixar grátis</a>
-        <a href="#app" class="btn-outline">Saiba mais</a>
+        <a href="#baixar" class="btn-white">⬇ Download grátis</a>
+        <a href="#app" class="btn-outline">Ver funcionalidades</a>
       </div>
     </div>
   </div>
@@ -400,42 +401,105 @@ footer{background:var(--black);border-top:1px solid #1a1a1a;padding:3rem;display
   <div class="features-grid">
     <div class="feature-cell reveal">
       <p class="feature-num">01</p>
-      <div class="feature-icon-wrap">🏋️</div>
+      <div class="feature-icon-wrap">
+        <!-- Fichas de treino: clipboard com linhas e check -->
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="8" y="5" width="16" height="22" rx="2"/>
+          <path d="M13 5v-1a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/>
+          <line x1="12" y1="13" x2="20" y2="13"/>
+          <line x1="12" y1="17" x2="20" y2="17"/>
+          <line x1="12" y1="21" x2="16" y2="21"/>
+          <circle cx="11" cy="13" r="1" fill="white" stroke="none"/>
+          <circle cx="11" cy="17" r="1" fill="white" stroke="none"/>
+          <circle cx="11" cy="21" r="1" fill="white" stroke="none"/>
+        </svg>
+      </div>
       <h3>Fichas de treino</h3>
       <p>Trainer cria fichas completas com exercícios, séries e cargas. Atleta executa com clareza total, sem dúvida.</p>
       <span class="feature-badge">Grátis</span>
     </div>
     <div class="feature-cell reveal reveal-delay-1">
       <p class="feature-num">02</p>
-      <div class="feature-icon-wrap">📅</div>
+      <div class="feature-icon-wrap">
+        <!-- Eventos: troféu -->
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 4h12v10a6 6 0 0 1-12 0V4z"/>
+          <path d="M10 8H6a2 2 0 0 0 0 4h4"/>
+          <path d="M22 8h4a2 2 0 0 1 0 4h-4"/>
+          <line x1="16" y1="20" x2="16" y2="25"/>
+          <line x1="11" y1="28" x2="21" y2="28"/>
+        </svg>
+      </div>
       <h3>Eventos esportivos</h3>
       <p>Organize competições, treinos em grupo e circuitos especiais. Atletas se inscrevem pelo próprio app.</p>
       <span class="feature-badge">Grátis</span>
     </div>
     <div class="feature-cell reveal reveal-delay-2">
       <p class="feature-num">03</p>
-      <div class="feature-icon-wrap">💬</div>
+      <div class="feature-icon-wrap">
+        <!-- Feedback: dois balões de fala -->
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H11l-5 4v-4a2 2 0 0 1-1-2V7z"/>
+          <path d="M21 16h2a2 2 0 0 0 2-2V7" stroke-opacity=".35"/>
+          <line x1="10" y1="10" x2="18" y2="10"/>
+          <line x1="10" y1="13" x2="15" y2="13"/>
+        </svg>
+      </div>
       <h3>Feedback em tempo real</h3>
       <p>Canal direto entre atleta e treinador. Relate dores, sensações e dúvidas. Planilha ajustada na hora.</p>
       <span class="feature-badge">Grátis</span>
     </div>
     <div class="feature-cell reveal">
       <p class="feature-num">04</p>
-      <div class="feature-icon-wrap">📊</div>
+      <div class="feature-icon-wrap">
+        <!-- Analytics: gráfico de linha com ponto de pico -->
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="4,24 10,16 15,20 20,10 28,14"/>
+          <circle cx="20" cy="10" r="2.5" fill="white" stroke="none"/>
+          <line x1="4" y1="28" x2="28" y2="28" stroke-opacity=".35"/>
+          <line x1="4" y1="4" x2="4" y2="28" stroke-opacity=".35"/>
+        </svg>
+      </div>
       <h3>Dashboard de evolução</h3>
       <p>Gráficos de frequência, taxa de conclusão de fichas, streak de treinos e comparativos mensais.</p>
       <span class="feature-badge pro">Premium — em breve</span>
     </div>
     <div class="feature-cell reveal reveal-delay-1">
       <p class="feature-num">05</p>
-      <div class="feature-icon-wrap">📱</div>
-      <h3>WhatsApp integration</h3>
+      <div class="feature-icon-wrap">
+        <!-- WhatsApp: celular com raio de mensagem -->
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="3" width="14" height="26" rx="3"/>
+          <line x1="9" y1="8" x2="23" y2="8"/>
+          <line x1="9" y1="24" x2="23" y2="24"/>
+          <circle cx="16" cy="27" r="1" fill="white" stroke="none"/>
+          <path d="M13 14l2 2 4-4" stroke-width="1.8"/>
+        </svg>
+      </div>
+      <h3>Notificações & WhatsApp</h3>
       <p>Receba lembretes e confirme treinos direto no WhatsApp. O canal que você já usa, integrado ao seu plano.</p>
       <span class="feature-badge pro">Premium — em breve</span>
     </div>
     <div class="feature-cell reveal reveal-delay-2">
       <p class="feature-num">06</p>
-      <div class="feature-icon-wrap">🤖</div>
+      <div class="feature-icon-wrap">
+        <!-- IA: nó de rede neural -->
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
+          <circle cx="16" cy="16" r="3"/>
+          <circle cx="6" cy="10" r="2"/>
+          <circle cx="6" cy="22" r="2"/>
+          <circle cx="26" cy="10" r="2"/>
+          <circle cx="26" cy="22" r="2"/>
+          <circle cx="16" cy="5" r="2"/>
+          <circle cx="16" cy="27" r="2"/>
+          <line x1="13" y1="15" x2="8" y2="11"/>
+          <line x1="13" y1="17" x2="8" y2="21"/>
+          <line x1="19" y1="15" x2="24" y2="11"/>
+          <line x1="19" y1="17" x2="24" y2="21"/>
+          <line x1="16" y1="13" x2="16" y2="7"/>
+          <line x1="16" y1="19" x2="16" y2="25"/>
+        </svg>
+      </div>
       <h3>IA para treinos</h3>
       <p>Análise do histórico do atleta com sugestão automática de ajuste de carga e volume ao treinador.</p>
       <span class="feature-badge pro">Premium — em breve</span>
@@ -566,10 +630,10 @@ footer{background:var(--black);border-top:1px solid #1a1a1a;padding:3rem;display
   <div class="final-cta-bg"></div>
   <div class="final-cta-overlay"></div>
   <div class="final-cta-content reveal">
-    <h2>Pronto para<br/><em>evoluir de verdade?</em></h2>
+    <h2>Comece hoje.<br/><em>Evolua sempre.</em></h2>
     <div class="final-cta-actions">
-      <a href="#" class="btn-white" style="font-size:1rem;padding:1rem 2.5rem">⬇ Download Android</a>
-      <a href="https://github.com/arthur-amx/connect-sports" target="_blank" class="btn-outline" style="font-size:1rem;padding:1rem 2.5rem">Ver no GitHub</a>
+      <a href="#" class="btn-white" style="font-size:1rem;padding:1rem 2.5rem">⬇ Download Android — Grátis</a>
+      <a href="#" class="btn-outline" style="font-size:1rem;padding:1rem 2.5rem">🍎 iOS — Em breve</a>
     </div>
   </div>
 </section>
@@ -587,10 +651,10 @@ footer{background:var(--black);border-top:1px solid #1a1a1a;padding:3rem;display
   <div class="footer-links">
     <a href="#features">Funcionalidades</a>
     <a href="#planos">Planos</a>
-    <a href="https://github.com/arthur-amx/connect-sports" target="_blank">GitHub</a>
+    <a href="#baixar">Download</a>
     <a href="mailto:arthur.araujo48@gmail.com">Contato</a>
   </div>
-  <p class="footer-copy">© 2025 Connect Sports · PUC Minas</p>
+  <p class="footer-copy">© 2026 Connect Sports · Arthur Araújo</p>
 </footer>
 
 <script>
@@ -639,10 +703,18 @@ window.addEventListener('load', () => {
 
 // ── NAV SCROLL ──
 const nav = document.querySelector('nav');
+const heroBg = document.getElementById('heroBg');
+const heroEl = document.getElementById('hero');
+
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-  // Parallax hero
-  document.getElementById('heroBg').style.transform = `scale(1) translateY(${window.scrollY * 0.3}px)`;
+  const y = window.scrollY;
+  nav.classList.toggle('scrolled', y > 60);
+  // Parallax: só aplica enquanto hero está na viewport
+  const heroH = heroEl.offsetHeight;
+  if (y < heroH) {
+    heroBg.style.transform = `scale(1) translateY(${y * 0.25}px)`;
+    heroBg.style.transition = 'none';
+  }
 }, { passive: true });
 
 // ── SCROLL REVEAL ──
