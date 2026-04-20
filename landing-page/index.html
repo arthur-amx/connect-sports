@@ -198,23 +198,75 @@ footer{background:var(--black);border-top:1px solid #1a1a1a;padding:3rem;display
 
 /* RESPONSIVE */
 @media(max-width:900px){
-  nav{padding:1.25rem 1.5rem}
-  .nav-links .nav-link-hide{display:none}
-  .hero-content{padding:0 1.5rem 4rem}
-  .gallery{grid-template-columns:1fr;grid-template-rows:repeat(3,50vh)}
-  .concept{grid-template-columns:1fr}
-  .concept-img{height:60vw;min-height:300px}
-  .concept-text{padding:4rem 1.5rem}
-  .features{padding:4rem 1.5rem}
+  /* NAV MOBILE */
+  nav{padding:1rem 1.25rem}
+  nav.scrolled{padding:.875rem 1.25rem}
+  .nav-logo svg{width:26px;height:26px}
+  .logo-wordmark{font-size:.8rem;white-space:nowrap}
+  .nav-links{gap:0}
+  .nav-link-hide{display:none!important}
+  .nav-cta{padding:.45rem 1rem;font-size:.75rem!important;letter-spacing:.02em!important}
+
+  /* HERO MOBILE */
+  .hero-content{padding:0 1.25rem 3.5rem}
+  .hero-eyebrow{font-size:.65rem;margin-bottom:1rem}
+  .hero-title{font-size:clamp(2.8rem,13vw,4.5rem);margin-bottom:1.5rem}
+  .hero-bottom{flex-direction:column;align-items:flex-start;gap:1.5rem}
+  .hero-desc{font-size:.9rem;max-width:100%}
+  .hero-actions{width:100%}
+  .btn-white,.btn-outline{flex:1;justify-content:center;padding:.8rem 1rem;font-size:.85rem}
+  .hero-scroll{right:1.25rem}
+
+  /* GALLERY MOBILE */
+  .gallery{grid-template-columns:1fr;grid-template-rows:50vw 50vw 50vw}
+
+  /* CONCEPT MOBILE */
+  .concept{grid-template-columns:1fr;min-height:auto}
+  .concept-img{height:70vw;min-height:260px}
+  .concept-text{padding:3rem 1.25rem}
+  .concept-num{font-size:.7rem;margin-bottom:1.25rem}
+  .concept-body{max-width:100%}
+
+  /* FEATURES MOBILE */
+  .features{padding:3.5rem 1.25rem}
+  .features-header{flex-direction:column;align-items:flex-start;gap:1rem;margin-bottom:3rem}
+  .features-sub{text-align:left;max-width:100%}
   .features-grid{grid-template-columns:1fr}
-  .features-sub{text-align:left}
+
+  /* CINEMATIC MOBILE */
+  .cinematic-bg{background-attachment:scroll}
+  .cinematic-content{padding:0 1.25rem}
+
+  /* SPLIT MOBILE */
   .split{grid-template-columns:1fr}
-  .split-side{min-height:60vw}
-  .pricing{padding:4rem 1.5rem}
-  .pricing-cards{grid-template-columns:1fr}
-  .how{padding:4rem 1.5rem}
+  .split-side{min-height:75vw}
+  .split-side:hover{flex:1}
+  .split-content{padding-bottom:.5rem}
+
+  /* PRICING MOBILE */
+  .pricing{padding:3.5rem 1.25rem}
+  .pricing-cards{grid-template-columns:1fr;max-width:100%}
+
+  /* HOW MOBILE */
+  .how{padding:3.5rem 1.25rem}
+  .how-head{flex-direction:column;gap:1rem;margin-bottom:2.5rem}
+  .how-head p{max-width:100%}
   .steps-row{grid-template-columns:1fr}
-  footer{flex-direction:column;align-items:flex-start;padding:2rem 1.5rem}
+  .step-cell::after{display:none}
+
+  /* FINAL CTA MOBILE */
+  .final-cta-bg{background-attachment:scroll}
+  .final-cta h2{font-size:clamp(2.5rem,11vw,4rem)}
+  .final-cta-actions{flex-direction:column;align-items:center}
+  .final-cta-actions a{width:100%;max-width:300px;justify-content:center}
+
+  /* FOOTER MOBILE */
+  footer{flex-direction:column;align-items:flex-start;padding:2rem 1.25rem;gap:1.25rem}
+  .footer-links{gap:1.25rem}
+
+  /* CURSOR: hide on touch */
+  .cursor,.cursor-follower{display:none}
+  html{cursor:auto}
 }
 </style>
 </head>
