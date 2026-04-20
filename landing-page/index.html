@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connect Sports — Sua assessoria esportiva no bolso</title>
+  <meta name="description" content="Conecte atletas e personal trainers em uma plataforma inteligente. Treinos personalizados, acompanhamento em tempo real e evolução que você vê acontecer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #06060A;
+      --bg2: #0D0D14;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --accent: #00E5A0;
+      --accent2: #7C3AED;
+      --accent-glow: rgba(0,229,160,0.15);
+      --text: #F0F0F5;
+      --muted: #6B7280;
+      --muted2: #9CA3AF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 2rem;
+      background: rgba(6,6,10,0.7);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: all .3s;
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: .75rem;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; font-weight: 900; color: #fff;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .logo-text { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+    .logo-text span { color: var(--accent); }
+
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a {
+      color: var(--muted2); text-decoration: none; font-size: .9rem;
+      font-weight: 500; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .btn-nav {
+      background: var(--accent); color: #000 !important;
+      padding: .55rem 1.25rem; border-radius: 8px;
+      font-weight: 700 !important; font-size: .85rem !important;
+      transition: opacity .2s, box-shadow .2s !important;
+    }
+    .btn-nav:hover { opacity: .85; box-shadow: 0 0 20px var(--accent-glow) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 8rem 1.5rem 5rem;
+      position: relative; overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,229,160,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(124,58,237,0.1) 0%, transparent 50%);
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(0,229,160,0.1); border: 1px solid rgba(0,229,160,0.25);
+      color: var(--accent); padding: .4rem 1rem; border-radius: 999px;
+      font-size: .8rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+      margin-bottom: 1.5rem; position: relative;
+    }
+
+    .badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(1.4); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      font-weight: 900; line-height: 1.05;
+      letter-spacing: -.03em;
+      max-width: 900px; position: relative;
+    }
+
+    .hero h1 .grad {
+      background: linear-gradient(135deg, var(--accent) 0%, #00B4D8 50%, var(--accent2) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      margin-top: 1.5rem; font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--muted2); max-width: 580px; line-height: 1.7;
+      position: relative;
+    }
+
+    .hero-cta {
+      display: flex; gap: 1rem; margin-top: 2.5rem;
+      flex-wrap: wrap; justify-content: center; position: relative;
+    }
+
+    .btn-primary {
+      background: var(--accent); color: #000;
+      padding: .9rem 2rem; border-radius: 12px;
+      font-weight: 800; font-size: 1rem; text-decoration: none;
+      display: inline-flex; align-items: center; gap: .5rem;
+      transition: all .25s;
+      box-shadow: 0 4px 30px rgba(0,229,160,0.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(0,229,160,0.4); }
+
+    .btn-secondary {
+      border: 1px solid var(--border); color: var(--text);
+      padding: .9rem 2rem; border-radius: 12px;
+      font-weight: 600; font-size: 1rem; text-decoration: none;
+      display: inline-flex; align-items: center; gap: .5rem;
+      transition: all .25s; background: var(--card);
+      backdrop-filter: blur(10px);
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── MOCKUP HERO ── */
+    .hero-mockup {
+      margin-top: 4rem; position: relative; width: 100%; max-width: 900px;
+    }
+
+    .mockup-phones {
+      display: flex; align-items: flex-end; justify-content: center;
+      gap: 1.5rem; position: relative;
+    }
+
+    .phone {
+      border-radius: 40px;
+      border: 2px solid rgba(255,255,255,0.12);
+      overflow: hidden; position: relative;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    }
+
+    .phone-main {
+      width: 220px; height: 460px;
+      background: linear-gradient(160deg, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #1a1a2e 100%);
+      transform: translateY(0);
+    }
+
+    .phone-side {
+      width: 180px; height: 380px;
+      background: linear-gradient(160deg, #0d0d14 0%, #1a0a2e 40%, #0a1628 100%);
+      opacity: .7; filter: blur(1px);
+    }
+
+    .phone-screen {
+      padding: 1.5rem 1rem;
+      display: flex; flex-direction: column; height: 100%;
+    }
+
+    .phone-status { display: flex; justify-content: space-between; font-size: .6rem; color: rgba(255,255,255,.5); margin-bottom: .75rem; }
+
+    .phone-logo { text-align: center; margin-bottom: 1.25rem; }
+    .phone-logo-icon {
+      width: 44px; height: 44px; margin: 0 auto .5rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; font-weight: 900; color: #fff;
+    }
+    .phone-logo p { font-size: .75rem; font-weight: 700; color: var(--text); }
+
+    .phone-label { font-size: .65rem; color: var(--muted); margin-bottom: .25rem; }
+    .phone-input {
+      background: rgba(255,255,255,.06); border: 1px solid var(--border);
+      border-radius: 8px; padding: .5rem .75rem; margin-bottom: .75rem;
+      display: flex; align-items: center; gap: .5rem;
+      font-size: .7rem; color: var(--muted2);
+    }
+    .phone-btn {
+      background: var(--accent); border-radius: 8px;
+      padding: .6rem; text-align: center;
+      font-size: .7rem; font-weight: 700; color: #000; margin-top: .25rem;
+    }
+
+    .phone-glow {
+      position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%);
+      width: 300px; height: 100px;
+      background: radial-gradient(ellipse, rgba(0,229,160,0.2), transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ── STATS ── */
+    .stats {
+      padding: 5rem 1.5rem;
+      display: flex; justify-content: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+    }
+
+    .stats-inner {
+      display: flex; gap: 0; flex-wrap: wrap; justify-content: center;
+      max-width: 900px; width: 100%;
+    }
+
+    .stat-item {
+      flex: 1; min-width: 180px;
+      text-align: center; padding: 2rem 1.5rem;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+
+    .stat-num {
+      font-size: 3rem; font-weight: 900; letter-spacing: -.04em;
+      background: linear-gradient(135deg, var(--accent), #00B4D8);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label { font-size: .85rem; color: var(--muted2); margin-top: .25rem; font-weight: 500; }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 1.5rem; }
+
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+
+    .section-tag {
+      display: inline-block;
+      color: var(--accent); font-size: .8rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase; margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+      letter-spacing: -.03em; line-height: 1.1;
+    }
+
+    .section-sub {
+      color: var(--muted2); font-size: 1.1rem; margin-top: 1rem;
+      max-width: 540px; line-height: 1.7;
+    }
+
+    /* ── FEATURES ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem; margin-top: 3.5rem;
+    }
+
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 2rem;
+      transition: all .3s; position: relative; overflow: hidden;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0; transition: opacity .3s;
+    }
+    .feature-card:hover { border-color: rgba(0,229,160,0.3); transform: translateY(-4px); }
+    .feature-card:hover::before { opacity: 1; }
+
+    .feature-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 1.25rem;
+    }
+
+    .feature-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: .5rem; }
+    .feature-card p { color: var(--muted2); font-size: .9rem; line-height: 1.6; }
+
+    .tag-free {
+      display: inline-block; background: rgba(0,229,160,0.1);
+      color: var(--accent); font-size: .7rem; font-weight: 700;
+      padding: .2rem .6rem; border-radius: 999px; margin-top: .75rem;
+      border: 1px solid rgba(0,229,160,.2);
+    }
+    .tag-premium {
+      display: inline-block; background: rgba(124,58,237,0.1);
+      color: #A78BFA; font-size: .7rem; font-weight: 700;
+      padding: .2rem .6rem; border-radius: 999px; margin-top: .75rem;
+      border: 1px solid rgba(124,58,237,.2);
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-bg { background: var(--bg2); }
+
+    .steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem; margin-top: 3.5rem; position: relative;
+    }
+
+    .step {
+      text-align: center; padding: 2.5rem 1.5rem;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; position: relative;
+    }
+
+    .step-num {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem; font-weight: 900; color: #fff;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 0 30px var(--accent-glow);
+    }
+
+    .step h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: .5rem; }
+    .step p { color: var(--muted2); font-size: .9rem; line-height: 1.6; }
+
+    /* ── DIFFERENTIALS ── */
+    .diff-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; align-items: center; margin-top: 3.5rem;
+    }
+
+    .diff-list { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .diff-item { display: flex; gap: 1rem; align-items: flex-start; }
+
+    .diff-icon {
+      width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .diff-text h4 { font-size: 1rem; font-weight: 700; margin-bottom: .25rem; }
+    .diff-text p { color: var(--muted2); font-size: .875rem; line-height: 1.6; }
+
+    .diff-visual {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 24px; padding: 2rem; position: relative; overflow: hidden;
+    }
+
+    .diff-visual::before {
+      content: '';
+      position: absolute; top: -50%; right: -50%;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(0,229,160,0.1), transparent 70%);
+    }
+
+    .metric-card {
+      background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.25rem 1.5rem; margin-bottom: 1rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .metric-label { font-size: .8rem; color: var(--muted2); margin-bottom: .2rem; }
+    .metric-value { font-size: 1.5rem; font-weight: 800; }
+    .metric-trend { font-size: .75rem; color: var(--accent); font-weight: 600; }
+
+    .progress-bar {
+      height: 6px; background: rgba(255,255,255,.08);
+      border-radius: 999px; margin-top: .5rem; overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%; border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+
+    /* ── PRICING ── */
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-top: 3.5rem; max-width: 900px;
+    }
+
+    .pricing-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 24px; padding: 2.5rem; position: relative; overflow: hidden;
+    }
+
+    .pricing-card.featured {
+      border-color: var(--accent);
+      background: linear-gradient(160deg, rgba(0,229,160,0.06), rgba(124,58,237,0.06));
+    }
+
+    .pricing-card.featured::before {
+      content: 'MAIS POPULAR';
+      position: absolute; top: 1.25rem; right: 1.25rem;
+      background: var(--accent); color: #000;
+      font-size: .65rem; font-weight: 800; letter-spacing: .08em;
+      padding: .25rem .75rem; border-radius: 999px;
+    }
+
+    .pricing-name { font-size: .8rem; font-weight: 700; color: var(--muted2); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .75rem; }
+
+    .pricing-price {
+      display: flex; align-items: baseline; gap: .25rem;
+      margin-bottom: 1.75rem;
+    }
+    .pricing-price .currency { font-size: 1.25rem; font-weight: 700; color: var(--muted2); }
+    .pricing-price .amount { font-size: 3.5rem; font-weight: 900; letter-spacing: -.04em; }
+    .pricing-price .period { font-size: .875rem; color: var(--muted2); align-self: flex-end; padding-bottom: .5rem; }
+
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: .75rem; margin-bottom: 2rem; }
+    .pricing-features li {
+      display: flex; align-items: center; gap: .75rem;
+      font-size: .9rem; color: var(--muted2);
+    }
+    .pricing-features li .check { color: var(--accent); font-weight: 700; flex-shrink: 0; }
+    .pricing-features li .cross { color: var(--muted); font-weight: 700; flex-shrink: 0; }
+
+    .btn-plan {
+      display: block; text-align: center; text-decoration: none;
+      padding: .85rem; border-radius: 12px; font-weight: 700; font-size: .95rem;
+      transition: all .25s;
+    }
+    .btn-plan-outline {
+      border: 1px solid var(--border); color: var(--text);
+    }
+    .btn-plan-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-plan-solid {
+      background: var(--accent); color: #000;
+      box-shadow: 0 4px 20px rgba(0,229,160,0.25);
+    }
+    .btn-plan-solid:hover { opacity: .9; transform: translateY(-1px); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-bg { background: var(--bg2); }
+
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-top: 3.5rem;
+    }
+
+    .testimonial-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 1.75rem;
+    }
+
+    .t-stars { color: #FBBF24; font-size: .85rem; margin-bottom: 1rem; letter-spacing: .1em; }
+    .t-text { color: var(--muted2); font-size: .9rem; line-height: 1.7; margin-bottom: 1.25rem; font-style: italic; }
+    .t-author { display: flex; align-items: center; gap: .75rem; }
+    .t-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: .875rem; color: #fff; flex-shrink: 0;
+    }
+    .t-name { font-size: .9rem; font-weight: 700; }
+    .t-role { font-size: .75rem; color: var(--muted); }
+
+    /* ── CTA ── */
+    .cta-section {
+      text-align: center; padding: 7rem 1.5rem;
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(0,229,160,0.08), transparent 70%);
+    }
+    .cta-section h2 { position: relative; }
+    .cta-section p { color: var(--muted2); font-size: 1.1rem; margin-top: 1rem; position: relative; }
+    .cta-section .hero-cta { position: relative; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 1.5rem;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 1.5rem; text-align: center;
+    }
+    .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { color: var(--muted); font-size: .85rem; text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { color: var(--muted); font-size: .8rem; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .diff-grid { grid-template-columns: 1fr; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat-item:last-child { border-bottom: none; }
+      .phone-side { display: none; }
+    }
+
+    /* ── SCROLL ANIMATION ── */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity .6s, transform .6s;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-icon">CS</div>
+    <span class="logo-text">Connect<span>Sports</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#funcionalidades">Funcionalidades</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#diferenciais">Diferenciais</a>
+    <a href="#planos">Planos</a>
+    <a href="#baixar" class="btn-nav">Baixar grátis</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <div class="badge-dot"></div>
+    Agora disponível no Android
+  </div>
+
+  <h1>
+    Sua assessoria<br/>
+    esportiva <span class="grad">inteligente</span>
+  </h1>
+
+  <p>
+    Conecte atletas e personal trainers em uma plataforma completa. Treinos personalizados, acompanhamento em tempo real e evolução que você vê acontecer — tudo no seu bolso.
+  </p>
+
+  <div class="hero-cta">
+    <a href="#baixar" class="btn-primary">
+      ⬇ Baixar grátis
+    </a>
+    <a href="#como-funciona" class="btn-secondary">
+      ▶ Ver como funciona
+    </a>
+  </div>
+
+  <div class="hero-mockup">
+    <div class="mockup-phones">
+      <div class="phone phone-side">
+        <div class="phone-screen">
+          <div style="background:rgba(0,229,160,0.1);border-radius:12px;padding:1rem;margin-bottom:1rem;">
+            <div style="font-size:.55rem;color:var(--muted2);margin-bottom:.5rem;">TREINO DE HOJE</div>
+            <div style="font-size:.8rem;font-weight:700;">Força — Membros Superiores</div>
+            <div style="font-size:.6rem;color:var(--accent);margin-top:.25rem;">8 exercícios · 45min</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:.5rem;">
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.6rem;font-size:.55rem;color:var(--muted2);">✅ Supino reto · 4×12</div>
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.6rem;font-size:.55rem;color:var(--muted2);">✅ Desenvolvimento · 3×10</div>
+            <div style="background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.2);border-radius:8px;padding:.6rem;font-size:.55rem;color:var(--accent);">▶ Crucifixo · 3×12</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phone phone-main">
+        <div class="phone-screen">
+          <div class="phone-status">
+            <span>9:41</span><span>● ● ●</span>
+          </div>
+          <div class="phone-logo">
+            <div class="phone-logo-icon">CS</div>
+            <p>Connect Sports</p>
+            <div style="font-size:.6rem;color:var(--muted);margin-top:.15rem;">Bem-vindo ao</div>
+          </div>
+          <div class="phone-label">E-mail</div>
+          <div class="phone-input">✉ atleta@email.com</div>
+          <div class="phone-label">Senha</div>
+          <div class="phone-input">🔒 ••••••••</div>
+          <div class="phone-btn">Entrar</div>
+          <div style="text-align:center;margin-top:1rem;font-size:.6rem;color:var(--muted2);">Não possui login? <span style="color:var(--accent)">Cadastre-se</span></div>
+          <div style="margin-top:auto;padding-top:1.5rem;display:flex;justify-content:center;gap:1.5rem;">
+            <div style="text-align:center;font-size:.5rem;color:var(--muted);">🏠<br/>Início</div>
+            <div style="text-align:center;font-size:.5rem;color:var(--accent);">🏋️<br/>Treinos</div>
+            <div style="text-align:center;font-size:.5rem;color:var(--muted);">📅<br/>Eventos</div>
+            <div style="text-align:center;font-size:.5rem;color:var(--muted);">👤<br/>Perfil</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phone phone-side">
+        <div class="phone-screen">
+          <div style="font-size:.6rem;color:var(--muted2);margin-bottom:1rem;">MEU PROGRESSO</div>
+          <div style="margin-bottom:1rem;">
+            <div style="font-size:.55rem;color:var(--muted2);margin-bottom:.3rem;">Treinos esse mês</div>
+            <div style="font-size:1.5rem;font-weight:900;color:var(--accent);">18</div>
+            <div class="progress-bar" style="margin-top:.3rem;"><div class="progress-fill" style="width:75%"></div></div>
+          </div>
+          <div style="margin-bottom:1rem;">
+            <div style="font-size:.55rem;color:var(--muted2);margin-bottom:.3rem;">Sequência atual</div>
+            <div style="font-size:1.5rem;font-weight:900;color:#FBBF24;">🔥 12 dias</div>
+          </div>
+          <div style="background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,.2);border-radius:8px;padding:.75rem;">
+            <div style="font-size:.55rem;color:var(--accent);font-weight:700;margin-bottom:.25rem;">PRÓXIMO EVENTO</div>
+            <div style="font-size:.65rem;color:var(--text);">Corrida 5K — Sábado</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="phone-glow"></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats fade-up">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num">15+</div>
+      <div class="stat-label">Modalidades esportivas</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Gratuito para começar</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">Acesso aos seus treinos</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Possibilidades de evolução</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="funcionalidades">
+  <div class="section-inner">
+    <div class="fade-up">
+      <span class="section-tag">Funcionalidades</span>
+      <h2>Tudo que você precisa<br/>para evoluir de verdade</h2>
+      <p class="section-sub">Ferramentas pensadas para atletas sérios e personal trainers que querem resultado.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card fade-up">
+        <div class="feature-icon" style="background:rgba(0,229,160,0.1);">🏋️</div>
+        <h3>Fichas de treino personalizadas</h3>
+        <p>Personal trainers criam fichas completas com exercícios, séries, repetições e descrições. Atletas executam com clareza total.</p>
+        <span class="tag-free">Grátis</span>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon" style="background:rgba(124,58,237,0.1);">📅</div>
+        <h3>Gestão de eventos esportivos</h3>
+        <p>Crie e gerencie competições, treinos em grupo e eventos especiais. Atletas se inscrevem diretamente pelo app.</p>
+        <span class="tag-free">Grátis</span>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon" style="background:rgba(0,180,216,0.1);">💬</div>
+        <h3>Feedback em tempo real</h3>
+        <p>Canal direto entre atleta e treinador. Envie feedbacks sobre treinos, dores e sensações para ajuste imediato da planilha.</p>
+        <span class="tag-free">Grátis</span>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon" style="background:rgba(251,191,36,0.1);">🔔</div>
+        <h3>Notificações push inteligentes</h3>
+        <p>Receba lembretes de treino, novos eventos e mensagens do seu treinador diretamente no celular, sem perder nada.</p>
+        <span class="tag-free">Grátis</span>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon" style="background:rgba(124,58,237,0.1);">📊</div>
+        <h3>Dashboard de evolução</h3>
+        <p>Visualize seu progresso com gráficos claros. Acompanhe métricas de treino, frequência e evolução ao longo do tempo.</p>
+        <span class="tag-premium">Premium — em breve</span>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon" style="background:rgba(34,197,94,0.1);">🤖</div>
+        <h3>IA para recomendação de treinos</h3>
+        <p>Inteligência artificial que analisa seu histórico e sugere ajustes na planilha para maximizar seus resultados.</p>
+        <span class="tag-premium">Premium — em breve</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="como-funciona" class="how-bg">
+  <div class="section-inner">
+    <div class="fade-up" style="text-align:center">
+      <span class="section-tag">Como funciona</span>
+      <h2>Comece em 3 passos simples</h2>
+      <p class="section-sub" style="margin: 0 auto">De zero ao primeiro treino em menos de 5 minutos.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step fade-up">
+        <div class="step-num">1</div>
+        <h3>Baixe e cadastre-se</h3>
+        <p>Crie sua conta grátis como atleta ou personal trainer. Sem cartão de crédito, sem burocracia.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">2</div>
+        <h3>Conecte com seu trainer</h3>
+        <p>Use o código de convite do seu personal para criar o vínculo. Em segundos vocês estão conectados na plataforma.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">3</div>
+        <h3>Treine e evolua</h3>
+        <p>Acesse suas fichas, acompanhe eventos e envie feedbacks. Seu treinador monitora tudo em tempo real.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais">
+  <div class="section-inner">
+    <div class="fade-up">
+      <span class="section-tag">Por que Connect Sports?</span>
+      <h2>O que o Strava não tem<br/>e você vai amar</h2>
+      <p class="section-sub">Mais do que registrar atividades — uma plataforma de assessoria esportiva completa.</p>
+    </div>
+
+    <div class="diff-grid fade-up">
+      <div class="diff-list">
+        <div class="diff-item">
+          <div class="diff-icon" style="background:rgba(0,229,160,0.1);">🎯</div>
+          <div class="diff-text">
+            <h4>Relação direta atleta-trainer</h4>
+            <p>Diferente do Strava, o Connect Sports cria um canal real entre você e seu personal. Planejamento feito para você, não para a massa.</p>
+          </div>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon" style="background:rgba(124,58,237,0.1);">💼</div>
+          <div class="diff-text">
+            <h4>Ferramenta profissional para trainers</h4>
+            <p>Personal trainers gerenciam toda a carteira de alunos em um só lugar. Fichas, eventos, feedbacks e métricas centralizadas.</p>
+          </div>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon" style="background:rgba(0,180,216,0.1);">📱</div>
+          <div class="diff-text">
+            <h4>WhatsApp integration (em breve)</h4>
+            <p>Receba atualizações de treino e notificações diretamente no WhatsApp — o canal que você já usa todos os dias.</p>
+          </div>
+        </div>
+        <div class="diff-item">
+          <div class="diff-icon" style="background:rgba(251,191,36,0.1);">🏆</div>
+          <div class="diff-text">
+            <h4>Foco em performance, não em likes</h4>
+            <p>Sem feed social distrator. O foco é na sua evolução esportiva, com dados que importam para o seu treinador.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="diff-visual">
+        <div style="font-size:.75rem;color:var(--muted2);margin-bottom:1.25rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;">📈 Painel do Treinador</div>
+        <div class="metric-card">
+          <div>
+            <div class="metric-label">Atletas ativos</div>
+            <div class="metric-value">12</div>
+          </div>
+          <div class="metric-trend">↑ 3 novos</div>
+        </div>
+        <div class="metric-card">
+          <div>
+            <div class="metric-label">Fichas criadas</div>
+            <div class="metric-value">47</div>
+          </div>
+          <div class="metric-trend">esse mês</div>
+        </div>
+        <div style="margin-top:1rem;">
+          <div style="font-size:.75rem;color:var(--muted2);margin-bottom:.75rem;">Adesão aos treinos</div>
+          <div style="display:flex;align-items:center;gap:1rem;">
+            <div class="progress-bar" style="flex:1;">
+              <div class="progress-fill" style="width:83%"></div>
+            </div>
+            <span style="font-size:.9rem;font-weight:700;color:var(--accent);">83%</span>
+          </div>
+        </div>
+        <div style="margin-top:1rem;">
+          <div style="font-size:.75rem;color:var(--muted2);margin-bottom:.75rem;">Feedbacks recebidos</div>
+          <div style="display:flex;align-items:center;gap:1rem;">
+            <div class="progress-bar" style="flex:1;">
+              <div class="progress-fill" style="width:91%"></div>
+            </div>
+            <span style="font-size:.9rem;font-weight:700;color:var(--accent);">91%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="planos" class="how-bg">
+  <div class="section-inner">
+    <div class="fade-up" style="text-align:center">
+      <span class="section-tag">Planos</span>
+      <h2>Comece grátis.<br/>Escale quando quiser.</h2>
+      <p class="section-sub" style="margin:0 auto">Modelo freemium: acesso completo ao essencial, recursos premium quando você estiver pronto.</p>
+    </div>
+
+    <div class="pricing-grid fade-up" style="margin:0 auto;margin-top:3.5rem;">
+      <div class="pricing-card">
+        <div class="pricing-name">Free</div>
+        <div class="pricing-price">
+          <span class="amount">R$0</span>
+          <span class="period">/mês</span>
+        </div>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> Até 10 atletas</li>
+          <li><span class="check">✓</span> Fichas de treino ilimitadas</li>
+          <li><span class="check">✓</span> Sistema de eventos</li>
+          <li><span class="check">✓</span> Feedback atleta-trainer</li>
+          <li><span class="check">✓</span> Notificações push</li>
+          <li><span class="cross">✗</span> Dashboard de analytics</li>
+          <li><span class="cross">✗</span> Integração WhatsApp</li>
+          <li><span class="cross">✗</span> Recomendações por IA</li>
+        </ul>
+        <a href="#baixar" class="btn-plan btn-plan-outline">Começar grátis</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-name">Pro</div>
+        <div class="pricing-price">
+          <span class="currency">R$</span>
+          <span class="amount">49</span>
+          <span class="period">/mês</span>
+        </div>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> Atletas ilimitados</li>
+          <li><span class="check">✓</span> Tudo do plano Free</li>
+          <li><span class="check">✓</span> Dashboard de analytics avançado</li>
+          <li><span class="check">✓</span> Integração WhatsApp</li>
+          <li><span class="check">✓</span> Recomendações por IA</li>
+          <li><span class="check">✓</span> Suporte prioritário</li>
+          <li><span class="check">✓</span> Biblioteca de exercícios premium</li>
+          <li><span class="check">✓</span> Relatórios exportáveis (PDF)</li>
+        </ul>
+        <a href="#baixar" class="btn-plan btn-plan-solid">Assinar Pro — em breve</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-bg">
+  <div class="section-inner">
+    <div class="fade-up" style="text-align:center">
+      <span class="section-tag">Depoimentos</span>
+      <h2>O que dizem os usuários</h2>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-up">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"Finalmente uma plataforma que entende a relação entre atleta e treinador. Antes trocava treinos por WhatsApp, hoje tenho tudo organizado em um lugar só."</p>
+        <div class="t-author">
+          <div class="t-avatar">LM</div>
+          <div>
+            <div class="t-name">Lucas Martins</div>
+            <div class="t-role">Atleta de corrida · São Paulo</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"Uso para gerenciar meus 15 alunos. O sistema de fichas e feedback transformou minha forma de trabalhar. Economizo horas por semana."</p>
+        <div class="t-author">
+          <div class="t-avatar">CR</div>
+          <div>
+            <div class="t-name">Carla Ribeiro</div>
+            <div class="t-role">Personal Trainer · CREF 12345</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"As notificações de treino me ajudam a manter a consistência. E poder mandar feedback pro meu personal direto no app é diferente de tudo que já usei."</p>
+        <div class="t-author">
+          <div class="t-avatar">FS</div>
+          <div>
+            <div class="t-name">Felipe Santos</div>
+            <div class="t-role">Atleta de musculação · BH</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="baixar" class="cta-section">
+  <span class="section-tag">Disponível agora</span>
+  <h2>Pronto para evoluir?</h2>
+  <p>Baixe grátis e comece hoje mesmo.<br/>Sem cartão de crédito. Sem complicação.</p>
+  <div class="hero-cta" style="margin-top:2rem">
+    <a href="#" class="btn-primary">⬇ Download Android</a>
+    <a href="#" class="btn-secondary">🍎 iOS — em breve</a>
+  </div>
+  <p style="margin-top:1.5rem;font-size:.8rem;color:var(--muted);">Projeto acadêmico em desenvolvimento · PUC Minas 2025</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="nav-logo">
+    <div class="logo-icon" style="width:32px;height:32px;font-size:.9rem;">CS</div>
+    <span class="logo-text" style="font-size:1rem;">Connect<span>Sports</span></span>
+  </a>
+  <div class="footer-links">
+    <a href="#funcionalidades">Funcionalidades</a>
+    <a href="#planos">Planos</a>
+    <a href="https://github.com/arthur-amx/connect-sports" target="_blank">GitHub</a>
+    <a href="mailto:arthur.araujo48@gmail.com">Contato</a>
+  </div>
+  <p class="footer-copy">© 2025 Connect Sports. Desenvolvido com ❤ na PUC Minas.</p>
+</footer>
+
+<script>
+  // Scroll animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
